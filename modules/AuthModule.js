@@ -2,10 +2,10 @@ const Joi = require("joi");
 const User = require("../model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Mailer = require("../middleware/Mailsender");
+const Mailer = require("../middleWare/MailSender");
 
-//^----------------------> Registration Part <----------------------^//
-exports.register = async (req, res, next) => {
+//^----------------------> Registration <----------------------^//
+exports.Register = async (req, res, next) => {
   const schema = Joi.object({
     first_name: Joi.string().min(3).max(50).required().trim(true),
     last_name: Joi.string().min(3).max(50).required().trim(true),
@@ -47,7 +47,7 @@ exports.register = async (req, res, next) => {
 
 //^----------------------> Login <----------------------^//
 
-exports.login = async (req, res, next) => {
+exports.Login = async (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string().min(6).max(50).email().required(),
     password: Joi.string().min(4).max(15).required(),
@@ -86,7 +86,7 @@ exports.login = async (req, res, next) => {
 
 //^----------------------> Forgot Password <----------------------^//
 
-exports.forgotpassword = async (req, res, next) => {
+exports.ForgotPassword = async (req, res, next) => {
   const schema = Joi.object({
     email: Joi.string().min(6).max(50).email().required(),
   });

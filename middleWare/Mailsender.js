@@ -19,7 +19,7 @@ exports.mailer = async (req, res) => {
   let info = await transporter.sendMail({
     from: process.env.EMAIL, //& sender address    
     to: req.email, //& list of receivers 
-    subject: `Reset password mail by MOBO SHOP`, //& Subject line
+    subject: `Reset password mail by KitsXI`, //& Subject line
     text: `This mail is from Ayush.`, //& plain text body
     html: `
             <h3>Hello,</h3>
@@ -37,7 +37,7 @@ exports.mailer = async (req, res) => {
             >
                 Reset Password
             </a>
-            <h4>Note: The link is valide for 2 min only.</h4>
+            <h4>Note: The link is valid for 2 min only.</h4>
         `,
   });
 
