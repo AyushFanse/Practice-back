@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../modules/userModule");
+const User = require("../modules/UserModule");
 
 //~------------------------| GET USER DATA |------------------------~//
 
