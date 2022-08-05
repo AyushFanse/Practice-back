@@ -12,7 +12,7 @@ router.post('/login', Register.Login);
 
 //~------------------------> Forgot Password <------------------------~//
 
-router.post('/forgot', Register.ForgotPassword);
+// router.post('/forgot', Register.ForgotPassword);
 
 
 module.exports = router;

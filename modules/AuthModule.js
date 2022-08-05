@@ -2,7 +2,7 @@ const Joi = require("joi");
 const User = require("../model/user");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const Mailer = require("../middleWare/MailSender");
+// const Mailer = require("../middleWare/MailSender");
 
 //^----------------------> Registration <----------------------^//
 exports.Register = async (req, res, next) => {
@@ -86,37 +86,37 @@ exports.Login = async (req, res, next) => {
 
 //^----------------------> Forgot Password <----------------------^//
 
-exports.ForgotPassword = async (req, res, next) => {
-  const schema = Joi.object({
-    email: Joi.string().min(6).max(50).email().required(),
-  });
-  try {
-    let { error } = schema.validate(req.body);
-    if (error) return res.status(400).send({ msg: error.details[0].message });
+// exports.ForgotPassword = async (req, res, next) => {
+//   const schema = Joi.object({
+//     email: Joi.string().min(6).max(50).email().required(),
+//   });
+//   try {
+//     let { error } = schema.validate(req.body);
+//     if (error) return res.status(400).send({ msg: error.details[0].message });
 
-    let existUser = await User.findOne({ email: req.body.email }).exec();
-    if (!existUser)
-      return res
-        .status(400)
-        .send({ msg: "Email not registered", status: "error" });
+//     let existUser = await User.findOne({ email: req.body.email }).exec();
+//     if (!existUser)
+//       return res
+//         .status(400)
+//         .send({ msg: "Email not registered", status: "error" });
 
-    let user = {
-      id: existUser._id,
-    };
+//     let user = {
+//       id: existUser._id,
+//     };
 
-    let token = jwt.sign({ user }, "SWERA", { expiresIn: "2m" });
+//     let token = jwt.sign({ user }, "SWERA", { expiresIn: "2m" });
 
-    const data = {
-      email: req.body.email,
-      id: existUser._id,
-      token: token,
-    };
+//     const data = {
+//       email: req.body.email,
+//       id: existUser._id,
+//       token: token,
+//     };
 
-    await Mailer.mailer(data);
-    res
-      .status(200)
-      .send({ msg: "Reset password link has been sent to your mail." });
-  } catch (err) {
-    res.status(400).send(err);
-  }
-};
+//     await Mailer.mailer(data);
+//     res
+//       .status(200)
+//       .send({ msg: "Reset password link has been sent to your mail." });
+//   } catch (err) {
+//     res.status(400).send(err);
+//   }
+// };
